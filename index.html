@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Creavo Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -12,13 +12,14 @@
   --panel:#12182b;
   --primary:#7c7cff;
   --secondary:#00e5ff;
-  --text:#ffffff;
+  --text:#fff;
   --muted:#9aa0b4;
 }
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:var(--bg);color:var(--text);overflow:hidden}
 
-/* LAYOUT */
+/* ===== DESKTOP LAYOUT ===== */
 .app{
   display:grid;
   grid-template-columns:260px 1fr;
@@ -28,25 +29,24 @@ body{background:var(--bg);color:var(--text);overflow:hidden}
 /* SIDEBAR */
 .sidebar{
   background:var(--panel);
-  padding:30px 20px;
+  padding:24px;
 }
 .logo{
   font-size:26px;
   font-weight:700;
   color:var(--secondary);
-  margin-bottom:40px;
+  margin-bottom:30px;
 }
 .menu a{
   display:block;
-  padding:14px 18px;
+  padding:14px;
   margin-bottom:10px;
   border-radius:12px;
-  color:var(--muted);
   text-decoration:none;
-  transition:.3s;
+  color:var(--muted);
 }
-.menu a:hover,
-.menu a.active{
+.menu a.active,
+.menu a:hover{
   background:linear-gradient(90deg,var(--primary),var(--secondary));
   color:#000;
   font-weight:600;
@@ -57,89 +57,68 @@ body{background:var(--bg);color:var(--text);overflow:hidden}
   display:flex;
   flex-direction:column;
 }
-
-/* TOPBAR */
 .topbar{
-  padding:20px 30px;
+  padding:16px 24px;
   background:rgba(0,0,0,.4);
   display:flex;
   justify-content:space-between;
-  align-items:center;
 }
-.topbar span{
-  color:var(--muted);
-}
-
-/* CONTENT */
 .content{
   flex:1;
-  padding:30px;
+  padding:24px;
   overflow-y:auto;
 }
 
 /* DASHBOARD */
-.cards{
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:20px;
 }
 .card{
   background:var(--panel);
-  padding:25px;
+  padding:24px;
   border-radius:18px;
-  transition:.4s;
 }
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 20px 40px rgba(0,229,255,.15);
-}
-.card h3{
-  color:var(--secondary);
-  margin-bottom:10px;
-}
+.card h3{color:var(--secondary)}
 
 /* EDITOR */
 .editor{
   display:grid;
-  grid-template-columns:260px 1fr 300px;
-  gap:20px;
+  grid-template-columns:240px 1fr 280px;
+  gap:16px;
 }
-.toolbox, .properties{
+.panel{
   background:var(--panel);
   border-radius:18px;
-  padding:20px;
+  padding:16px;
 }
 .canvas{
   background:#fff;
+  color:#000;
   border-radius:18px;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#000;
   font-weight:600;
 }
 
-/* VIDEO TIMELINE */
+/* VIDEO */
 .timeline{
   background:var(--panel);
   border-radius:18px;
-  padding:20px;
-  margin-top:20px;
+  padding:16px;
+  margin-top:16px;
 }
 .track{
-  background:#1e2542;
   height:40px;
+  background:#1f2642;
   border-radius:10px;
   margin-bottom:10px;
 }
 
-/* AI PANEL */
-.ai-box{
-  background:var(--panel);
-  border-radius:18px;
-  padding:20px;
-}
-.ai-box input{
+/* AI */
+.ai input{
   width:100%;
   padding:12px;
   border-radius:10px;
@@ -147,13 +126,46 @@ body{background:var(--bg);color:var(--text);overflow:hidden}
   margin-top:10px;
 }
 
-/* MOBILE */
-@media(max-width:900px){
+/* ===== MOBILE MODE ===== */
+.mobile-nav{
+  display:none;
+}
+
+@media(max-width:768px){
+  body{overflow:auto}
   .app{
     grid-template-columns:1fr;
   }
   .sidebar{
     display:none;
+  }
+  .editor{
+    grid-template-columns:1fr;
+  }
+  .panel{
+    display:none;
+  }
+  .canvas{
+    height:60vh;
+  }
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:var(--panel);
+    padding:10px;
+    justify-content:space-around;
+  }
+  .mobile-nav button{
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-size:20px;
+  }
+  .mobile-nav button.active{
+    color:var(--secondary);
   }
 }
 </style>
@@ -163,65 +175,42 @@ body{background:var(--bg);color:var(--text);overflow:hidden}
 
 <div class="app">
 
-  <!-- SIDEBAR -->
+  <!-- SIDEBAR (DESKTOP) -->
   <div class="sidebar">
     <div class="logo">Creavo</div>
     <div class="menu">
-      <a href="#" class="active" onclick="show('dashboard')">Dashboard</a>
-      <a href="#" onclick="show('design')">Design Editor</a>
-      <a href="#" onclick="show('video')">Video Editor</a>
-      <a href="#" onclick="show('ai')">AI Tools</a>
+      <a href="#" class="active" onclick="show('dash')">Dashboard</a>
+      <a href="#" onclick="show('design')">Design</a>
+      <a href="#" onclick="show('video')">Video</a>
+      <a href="#" onclick="show('ai')">AI</a>
     </div>
   </div>
 
   <!-- MAIN -->
   <div class="main">
-
     <div class="topbar">
       <span>Creative Workspace</span>
-      <span>User • Cloud Sync ☁</span>
+      <span>Cloud ☁</span>
     </div>
 
     <div class="content">
 
-      <!-- DASHBOARD -->
-      <div id="dashboard">
-        <div class="cards">
-          <div class="card">
-            <h3>Graphic Design</h3>
-            <p>Poster, Feed, Branding, Presentation</p>
-          </div>
-          <div class="card">
-            <h3>Video Editor</h3>
-            <p>Short video, cinematic, subtitle AI</p>
-          </div>
-          <div class="card">
-            <h3>AI Generator</h3>
-            <p>Design & video berbasis AI</p>
-          </div>
+      <div id="dash">
+        <div class="grid">
+          <div class="card"><h3>Design</h3><p>Poster, Feed, Branding</p></div>
+          <div class="card"><h3>Video</h3><p>Short, Reel, Subtitle AI</p></div>
+          <div class="card"><h3>AI Tools</h3><p>Generate faster</p></div>
         </div>
       </div>
 
-      <!-- DESIGN EDITOR -->
       <div id="design" style="display:none">
         <div class="editor">
-          <div class="toolbox">
-            <h3>Tools</h3>
-            <p>Text</p>
-            <p>Image</p>
-            <p>Shape</p>
-          </div>
-          <div class="canvas">
-            Canvas Design Area
-          </div>
-          <div class="properties">
-            <h3>Properties</h3>
-            <p>Font • Color • Size</p>
-          </div>
+          <div class="panel">Tools</div>
+          <div class="canvas">Design Canvas</div>
+          <div class="panel">Properties</div>
         </div>
       </div>
 
-      <!-- VIDEO EDITOR -->
       <div id="video" style="display:none">
         <div class="canvas">Video Preview</div>
         <div class="timeline">
@@ -230,28 +219,29 @@ body{background:var(--bg);color:var(--text);overflow:hidden}
         </div>
       </div>
 
-      <!-- AI TOOLS -->
-      <div id="ai" style="display:none">
-        <div class="ai-box">
+      <div id="ai" style="display:none" class="ai">
+        <div class="panel" style="display:block">
           <h3>AI Assistant</h3>
-          <p>Prompt desain / video</p>
-          <input placeholder="Buat poster modern futuristik...">
+          <input placeholder="Buat video cinematic...">
         </div>
       </div>
 
     </div>
-
   </div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <button class="active" onclick="show('dash')">⌂</button>
+  <button onclick="show('design')">✏️</button>
+  <button onclick="show('video')">🎬</button>
+  <button onclick="show('ai')">🤖</button>
 </div>
 
 <script>
 function show(id){
-  document.querySelectorAll('.content > div')
-    .forEach(el=>el.style.display='none')
+  document.querySelectorAll('.content > div').forEach(d=>d.style.display='none')
   document.getElementById(id).style.display='block'
-  document.querySelectorAll('.menu a')
-    .forEach(a=>a.classList.remove('active'))
-  event.target.classList.add('active')
 }
 </script>
 
