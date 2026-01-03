@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creavo — Design & Multimedia Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#7c7cff;
+  --secondary:#00e5ff;
+  --bg:#0b0f1a;
+  --glass:rgba(255,255,255,0.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+body{
+  background:radial-gradient(circle at top,var(--bg),#000);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 8%;
+  position:sticky;
+  top:0;
+  z-index:99;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(10px);
+}
+
+nav h1{
+  font-size:26px;
+  font-weight:700;
+  color:var(--secondary);
+}
+
+nav ul{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#ccc;
+  font-weight:500;
+}
+
+nav ul li a:hover{
+  color:var(--secondary);
+}
+
+/* HERO */
+.hero{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 8%;
+  flex-wrap:wrap;
+}
+
+.hero-text{
+  max-width:520px;
+}
+
+.hero-text h2{
+  font-size:46px;
+  line-height:1.2;
+  background:linear-gradient(90deg,var(--secondary),var(--primary));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero-text p{
+  margin:20px 0;
+  color:#aaa;
+}
+
+.hero-text button{
+  padding:14px 34px;
+  border:none;
+  border-radius:40px;
+  font-size:16px;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  color:#000;
+  font-weight:600;
+}
+
+.hero-visual{
+  width:420px;
+  height:420px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  border-radius:30px;
+  filter:blur(60px);
+  opacity:.4;
+}
+
+/* FEATURES */
+.features{
+  padding:100px 8%;
+}
+
+.features h3{
+  text-align:center;
+  font-size:36px;
+  margin-bottom:50px;
+}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:var(--glass);
+  border-radius:20px;
+  padding:30px;
+  backdrop-filter:blur(15px);
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 20px 50px rgba(0,229,255,.2);
+}
+
+.card h4{
+  color:var(--secondary);
+  margin-bottom:10px;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  padding:100px 8%;
+  background:linear-gradient(135deg,rgba(124,124,255,.1),rgba(0,229,255,.1));
+}
+
+.cta h2{
+  font-size:40px;
+}
+
+.cta p{
+  color:#ccc;
+  margin:15px 0 30px;
+}
+
+.cta button{
+  padding:14px 40px;
+  border-radius:40px;
+  border:none;
+  background:var(--secondary);
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:40px;
+  color:#777;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav ul{display:none}
+  .hero{flex-direction:column;text-align:center}
+  .hero-text h2{font-size:34px}
+  .hero-visual{width:260px;height:260px;margin-top:40px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>Creavo</h1>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Tools</a></li>
+    <li><a href="#">Pricing</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <h2>Create Anything.<br>Design & Edit in One Platform.</h2>
+    <p>
+      Creavo adalah platform all-in-one untuk desain grafis, video editing,
+      dan multimedia berbasis AI — gabungan kekuatan Canva & CapCut.
+    </p>
+    <button>Mulai Gratis</button>
+  </div>
+  <div class="hero-visual"></div>
+</section>
+
+<section class="features">
+  <h3>Kenapa Creavo?</h3>
+  <div class="feature-grid">
+    <div class="card">
+      <h4>🎨 Graphic Design</h4>
+      <p>Template profesional, drag & drop, branding kit, dan export instan.</p>
+    </div>
+    <div class="card">
+      <h4>🎬 Video Editor</h4>
+      <p>Timeline editor, effects, subtitle AI, dan preset cinematic.</p>
+    </div>
+    <div class="card">
+      <h4>🤖 AI Tools</h4>
+      <p>AI design, auto resize, background remover, dan text-to-video.</p>
+    </div>
+    <div class="card">
+      <h4>☁ Cloud Workspace</h4>
+      <p>Edit dari mana saja, sinkron lintas device, kolaborasi real-time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Siap Berkarya Tanpa Batas?</h2>
+  <p>Desain. Edit. Publish. Semua dalam satu platform.</p>
+  <button>Daftar Sekarang</button>
+</section>
+
+<footer>
+  © 2026 Creavo Platform • Design & Multimedia Technology
+</footer>
+
+</body>
+</html>
